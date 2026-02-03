@@ -211,6 +211,27 @@ u"""Calculated by Torrie Asifor at Northeastern University using Statistical Mec
 
 entry(
     index = 10,
+    label = "OCHCHX",
+    molecule =
+"""
+""",
+    thermo = NASA(
+    polynomials = [
+        NASAPolynomial(coeffs=[-0.186083938, 0.0313033805, -3.31640683e-05, 1.83063923e-08, -4.06516487e-12, -16607.1771, -0.533154725], Tmin=(300.0, 'K'), Tmax=(1000.0, 'K')),
+        NASAPolynomial(coeffs=[12.1682959, -0.00776604449, 1.39731944e-05, -7.54695754e-09, 1.3659676e-12, -19762.1543, -63.1133931], Tmin=(1000.0, 'K'), Tmax=(2000.0, 'K')),
+    ],
+    Tmin=(300.0, 'K'),
+    Tmax=(2000.0, 'K'),
+),
+    shortDesc = u"""OCHCHX""",
+    longDesc =
+u"""Calculated by Torrie Asifor at Northeastern University using Statistical Mechanics. Based on DFT calculations by Colin Gallagher at Northeastern University
+""",
+)
+
+
+entry(
+    index = 11,
     label = "OCHOCHX",
     molecule =
 """
@@ -231,7 +252,7 @@ u"""Calculated by Torrie Asifor at Northeastern University using Statistical Mec
 
 
 entry(
-    index = 11,
+    index = 12,
     label = "OCHOX",
     molecule =
 """
