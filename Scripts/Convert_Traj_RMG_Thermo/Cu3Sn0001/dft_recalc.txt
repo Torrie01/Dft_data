@@ -62,10 +62,10 @@ species(name = "OCCOX",
 	thermo = (
 		NASA( [298.0, 1000.0], [2.41884657E+00, 2.78294959E-02,
  		 -3.94623871E-05, 2.87941258E-08, -8.50641432E-12,
- 		 -3.72426829E+05, -1.23759790E+01]), 
+ 		 -2.69784777E+04, -1.23759790E+01]), 
 		NASA( [1000.0, 2000.0], [1.10515201E+01, -3.31790688E-03,
  		 6.11806441E-06, -3.41065788E-09, 6.32647174E-13,
- 		 -3.74455902E+05, -5.52010354E+01]), 
+ 		 -2.90075500E+04, -5.52010354E+01]), 
 		 ),
     longDesc = u"""Calculated by Torrie Asifor at Northeastern University using Statistical Mechanics. Based on DFT calculations by Colin Gallagher at Northeastern University""",
 	)

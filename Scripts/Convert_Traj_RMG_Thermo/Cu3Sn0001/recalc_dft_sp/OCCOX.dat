@@ -1,5 +1,5 @@
 name = OCCOX
-heat_of_formation_0K = [-3083.0678055715293, 'kJ/mol']
+heat_of_formation_0K = [-210.85057720835937, 'kJ/mol']
 composition = {'H': 0, 'C': 2, 'N': 0, 'O': 2, 'Cu3Sn': 1}
 sites = 1
 adsorbate_mass = [56.019999999999996, 'amu']
