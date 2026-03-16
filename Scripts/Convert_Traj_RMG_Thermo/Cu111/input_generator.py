@@ -297,7 +297,7 @@ def fit_NASA(temperature, molecule):
 
     #line = '\n\t !cut and paste this value into the cti file!\n'
     line = '\tthermo = (\n'
-    line += "\t\tNASA( [%.1F, %.1F], [%.8E, %.8E,\n \t\t %.8E, %.8E, %.8E,\n \t\t %.8E, %.8E]), \n"%(300.0, 1000.0, a_low[0], a_low[1], a_low[2], a_low[3], a_low[4], a_low[5], a_low[6])
+    line += "\t\tNASA( [%.1F, %.1F], [%.8E, %.8E,\n \t\t %.8E, %.8E, %.8E,\n \t\t %.8E, %.8E]), \n"%(298.0, 1000.0, a_low[0], a_low[1], a_low[2], a_low[3], a_low[4], a_low[5], a_low[6])
     line += "\t\tNASA( [%.1F, %.1F], [%.8E, %.8E,\n \t\t %.8E, %.8E, %.8E,\n \t\t %.8E, %.8E]), \n"%(1000.0, max(temperature), a_high[0], a_high[1], a_high[2], a_high[3], a_high[4], a_high[5], a_high[6])
     line += "\t\t ),\n"
 
@@ -521,7 +521,7 @@ def parse_input_file(inputfile, molecule, element1):
                 number = int(number)
                 molecule.composition[element]=number
             N_adsorbate_atoms = 0
-            metal_surface = ['Pt', 'Cu', 'Ni', 'Ag']
+            metal_surface = ['Pt', 'Cu', 'Ni', 'Ag', 'Cu3Sn']
             for element in molecule.composition:
                 if element not in metal_surface:
                     N_adsorbate_atoms += molecule.composition[element]
@@ -595,10 +595,13 @@ def parse_input_file(inputfile, molecule, element1):
                 molecule.frequencies_units = units.strip()
                 molecule.frequencies = []
                 for i in range(len(freq_info)-1):
-                    temp_string = freq_info[1]
+                    temp_string = freq_info[i].strip() # temp_string = freq_info[1]
                     match = re.search(r'np\.float64\((.*?)\)', temp_string)
-                    val = np.float64(match.group(1))
-                    molecule.frequencies.append(float(val))
+                    if match:  #not present before
+                        val = float(match.group(1)) # val = np.float64(match.group(1))
+                    else:  # not present before
+                        val = float(temp_string)  # not present before
+                    molecule.frequencies.append(val) # molecule.frequencies.append(float(val))
                 error_frequencies = False
                 #if the two lowest frequencies are less than the cutoff value (This assumes that they are sorted!)
                 if molecule.frequencies[1]<molecule.cutoff_frequency:
@@ -730,7 +733,7 @@ def input_generation(compositions, traj_ps, output_p, ocp=False):
 
     # generate the input data to the functions below for each adsorbate
     input_data = {}
-    atomic_mass = {'C': 12.011, 'O': 15.999, 'H': 1.00784, 'N': 14.0067, 'Ag': 0, 'Pt': 0, 'Cu': 0}
+    atomic_mass = {'C': 12.011, 'O': 15.999, 'H': 1.00784, 'N': 14.0067, 'Cu3Sn': 0, 'Ag': 0, 'Pt': 0, 'Cu': 0}
     for i, v in h0_ads.items():
         ads_details = {}
         ads_details['name'] = i
